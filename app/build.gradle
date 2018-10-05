@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'io.fabric'
+
+apply from: 'linter.gradle'
+apply from: 'dependencies.gradle'
+apply from: 'jacoco.gradle'
+apply from: 'signing.gradle'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
+
+    defaultConfig {
+        applicationId "com.ysdc.movie"
+        minSdkVersion 21
+        targetSdkVersion 28
+        // from gradle.properties
+        versionCode Integer.valueOf(appVersionCode)
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        maxProcessCount 4
+        preDexLibraries false
+        javaMaxHeapSize "8g"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            buildConfigField "boolean", "MEMORY_ANALIZE", "false"
+            buildConfigField "String", "BASE_URL", "\"https://developers.themoviedb.org/3\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+        }
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "MEMORY_ANALIZE", "true"
+            buildConfigField "String", "BASE_URL", "\"https://developers.themoviedb.org/3\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation mulitdexLibs
+    implementation supportLibs
+    implementation googlePlayLibs
+    implementation networkLibs
+    implementation rxJavaLibs
+    implementation otherLibs
+    implementation stethoLibs
+    implementation analyticsLibs
+    implementation uiLibs
+
+    debugImplementation debugLibs
+    releaseImplementation releaseLibs
+
+    annotationProcessor annotationProcessorLibs
+    testAnnotationProcessor daggerCompiler
+    androidTestAnnotationProcessor daggerCompiler
+
+    testImplementation unitTestLibs
+    androidTestImplementation androidTestsLibs
+}
+
+apply plugin: 'com.google.gms.google-services'

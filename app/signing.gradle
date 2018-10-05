@@ -1,0 +1,17 @@
+
+android {
+   signingConfigs {
+       debug {
+           storeFile file('../debug.keystore')
+           storePassword 'android'
+           keyAlias 'androiddebugkey'
+           keyPassword 'android'
+       }
+       release {
+           storeFile file('../release.keystore')
+           storePassword 'car33m'
+           keyAlias 'movieRelease'
+           keyPassword 'car33m'
+       }
+   }
+}

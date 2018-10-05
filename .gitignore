@@ -50,7 +50,13 @@ captures/
 .externalNativeBuild
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
+#Normally this file should not be included in the git repo, but for an easier testing from Careem
+#I let them being included
+#google-services.json
+
+#keystore
+#debug.keystore
+#release.keystore
 
 # Freeline
 freeline.py
