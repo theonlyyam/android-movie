@@ -1,11 +1,7 @@
 <resources>
-    <string name="app_name">Template</string>
-
+    <string name="app_name">Movie App</string>
 
     <!--EXCEPTIONS & ERRORS-->
-    <string name="exception_not_logged">Your credentials have expired, please sign in again from the profile view.</string>
     <string name="exception_no_connectivity">No internet connection, please try again later.</string>
-    <string name="exception_undefined">Service unavailable. Please try again later.</string>
-    <string name="error_update_notification_settings">please check your settings and try again.</string>
-    <string name="error_google_connection">Google Service unavailable. Please try again later.</string>
+    <string name="exception_undefined">Unknown error, please contact our support.</string>
 </resources>

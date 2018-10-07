@@ -18,9 +18,13 @@ import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 public class MyPreferences {
 
     //Application parameters
+    private static final String PREFS_FILENAME = "app_prefs_file";
+
+    //Base URL where we get the images from
     public static final String IMAGES_BASE_URL = "IMAGES_BASE_URL";
     public static final String SECURE_IMAGES_BASE_URL = "SECURE_IMAGES_BASE_URL";
-    private static final String PREFS_FILENAME = "app_prefs_file";
+
+
     private final SharedPreferences sharedPrefs;
     private final Gson gson;
 

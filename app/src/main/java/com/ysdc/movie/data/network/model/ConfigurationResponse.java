@@ -19,4 +19,12 @@ public class ConfigurationResponse {
         @SerializedName("secure_base_url")
         private String secureImageBaseUrl;
     }
+
+    public String getImageBaseUrl(){
+        return images.imageBaseUrl;
+    }
+
+    public String getSecureImageVaseUrl(){
+        return images.secureImageBaseUrl;
+    }
 }

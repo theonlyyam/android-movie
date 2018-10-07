@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.ysdc.movie.R;
 import com.ysdc.movie.app.MyApplication;
+import com.ysdc.movie.exception.MovieDbException;
 import com.ysdc.movie.exception.NoConnectivityException;
 import com.ysdc.movie.injection.component.ActivityComponent;
 import com.ysdc.movie.injection.module.ActivityModule;
@@ -23,11 +24,10 @@ import timber.log.Timber;
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 
-    private ActivityComponent activityComponent;
-    private Unbinder unBinder;
-
     @Inject
     NetworkUtils networkUtils;
+    private ActivityComponent activityComponent;
+    private Unbinder unBinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,16 +50,22 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         Timber.e(throwable, "An Error occurred");
         if (throwable instanceof NoConnectivityException) {
             onError(R.string.exception_no_connectivity);
+        } else if (throwable instanceof MovieDbException) {
+            showMessage(throwable.getMessage());
         } else {
             onError(R.string.exception_undefined);
         }
     }
 
+    private void onError(String error) {
+        Timber.e("ERROR: %s", error);
+        showMessage(error);
+    }
+
     @Override
     public void onError(@StringRes int resId) {
         String msg = getString(resId);
-        Timber.e("ERROR: %s", msg);
-        showMessage(msg);
+        onError(msg);
     }
 
     @Override

@@ -13,18 +13,17 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
+import static com.ysdc.movie.utils.AppConstants.MOVIE_DB_DATE_FORMAT;
+
 /**
  * Class that transform the network response content in final Business Object, used by our application.
  */
 public class NetworkMovieMapper {
 
-    //Date format used by TheMovieDB endpoints responses
-    private static final String DATE_FORMAT = "yyy-MM-dd";
-
     private final SimpleDateFormat dateFormat;
 
     public NetworkMovieMapper() {
-        this.dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        this.dateFormat = new SimpleDateFormat(MOVIE_DB_DATE_FORMAT, Locale.getDefault());
     }
 
     /**
