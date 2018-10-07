@@ -19,12 +19,12 @@ public class MovieDbErrorResponse {
     }
 
     @VisibleForTesting
-    void setMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
     @VisibleForTesting
-    void setCode(Integer code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 }

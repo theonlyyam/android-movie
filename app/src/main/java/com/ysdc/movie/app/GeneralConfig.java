@@ -2,7 +2,6 @@ package com.ysdc.movie.app;
 
 /**
  * interface used to access all application specific information, such as version
- * Created by david on 5/10/18.
  */
 
 public interface GeneralConfig {

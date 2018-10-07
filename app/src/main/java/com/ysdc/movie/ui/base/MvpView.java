@@ -16,12 +16,10 @@
 package com.ysdc.movie.ui.base;
 
 /**
- * Created by david on 5/10/18.
+ * Every view (Activity & fragment) must implement this interface. Used also in the presenters as a reference to their views.
  */
 
 import android.support.annotation.StringRes;
-
-import butterknife.Unbinder;
 
 public interface MvpView {
 
@@ -32,8 +30,6 @@ public interface MvpView {
     void showMessage(String message);
 
     void showMessage(@StringRes int resId);
-
-    boolean isNetworkConnected();
 
     void hideKeyboard();
 }

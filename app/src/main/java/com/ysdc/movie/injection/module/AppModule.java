@@ -4,10 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ysdc.movie.app.AppConfig;
 import com.ysdc.movie.app.GeneralConfig;
 import com.ysdc.movie.app.MyApplication;
-import com.ysdc.movie.data.network.config.GsonCustom;
 import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.injection.annotations.ApplicationContext;
 import com.ysdc.movie.utils.NetworkUtils;
@@ -46,7 +46,7 @@ public class AppModule {
     @Provides
     @Singleton
     public Gson provideGson() {
-        return GsonCustom.createGson();
+        return new GsonBuilder().create();
     }
 
     @Provides
@@ -57,7 +57,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public NetworkUtils provideNetworkUtils(){
+    public NetworkUtils provideNetworkUtils() {
         return new NetworkUtils();
     }
 }

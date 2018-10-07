@@ -1,5 +1,7 @@
 package com.ysdc.movie.data.network.model;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -13,18 +15,28 @@ public class ConfigurationResponse {
         this.images = new Images();
     }
 
+    public String getImageBaseUrl() {
+        return images.imageBaseUrl;
+    }
+
+    public String getSecureImageVaseUrl() {
+        return images.secureImageBaseUrl;
+    }
+
+    @VisibleForTesting
+    public void setSecureImageVaseUrl(String url) {
+        images.secureImageBaseUrl = url;
+    }
+
+    @VisibleForTesting
+    public void setImageBaseUrl(String url) {
+        images.imageBaseUrl = url;
+    }
+
     class Images {
         @SerializedName("base_url")
         private String imageBaseUrl;
         @SerializedName("secure_base_url")
         private String secureImageBaseUrl;
-    }
-
-    public String getImageBaseUrl(){
-        return images.imageBaseUrl;
-    }
-
-    public String getSecureImageVaseUrl(){
-        return images.secureImageBaseUrl;
     }
 }

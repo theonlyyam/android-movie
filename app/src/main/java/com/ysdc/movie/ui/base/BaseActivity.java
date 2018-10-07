@@ -15,17 +15,17 @@ import com.ysdc.movie.exception.MovieDbException;
 import com.ysdc.movie.exception.NoConnectivityException;
 import com.ysdc.movie.injection.component.ActivityComponent;
 import com.ysdc.movie.injection.module.ActivityModule;
-import com.ysdc.movie.utils.NetworkUtils;
-
-import javax.inject.Inject;
 
 import butterknife.Unbinder;
 import timber.log.Timber;
 
+/**
+ * Every Activities must extend this class. It contains shared methods to avoid duplicates (like hide Keyboard), but also part of the logic of our MVP structure.
+ * the activity component, for example, that is required for the dagger dependency injection is initialized here, and the Butterknife unbinder too.
+ * Usefull method are also preent like the error handling for the most common one, and message display on the screen using Toast.
+ */
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 
-    @Inject
-    NetworkUtils networkUtils;
     private ActivityComponent activityComponent;
     private Unbinder unBinder;
 
@@ -76,11 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     @Override
     public void showMessage(@StringRes int resId) {
         showMessage(getString(resId));
-    }
-
-    @Override
-    public boolean isNetworkConnected() {
-        return networkUtils.isNetworkConnected(getApplicationContext());
     }
 
     @Override

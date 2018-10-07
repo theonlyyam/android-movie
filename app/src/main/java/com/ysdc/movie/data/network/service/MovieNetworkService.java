@@ -30,7 +30,7 @@ public interface MovieNetworkService {
     Single<ConfigurationResponse> getconfiguration();
 
     @GET(URL_DISCOVER_MOVIE)
-    Single<DiscoverMovieResponse> getLatestMovie(@Query(PARAMETER_PAGE) int page, @Query(PARAMETER_RELEASE_BEFORE) String beforeDate,
+    Single<DiscoverMovieResponse> getLatestMovie(@Query(PARAMETER_PAGE) Integer page, @Query(PARAMETER_RELEASE_BEFORE) String beforeDate,
                                                  @Query(PARAMETER_ORDER) String orderBy, @Query(PARAMETER_FILTER_YEAR) Integer Year);
 
     @GET(URL_MOVIE_DETAILS)

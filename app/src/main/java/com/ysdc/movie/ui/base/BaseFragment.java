@@ -23,18 +23,17 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.ysdc.movie.app.MyApplication;
-import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.injection.component.FragmentComponent;
 import com.ysdc.movie.injection.module.FragmentModule;
 
-import javax.inject.Inject;
-
 import butterknife.Unbinder;
 
+/**
+ * As for the Activity, we have a base fragment that has the same objective: reduce code duplicate, and simplify the mechanism of our MVP implementation by doing
+ * part of the job here (dagger DI, butterknige, etc.).
+ */
 public abstract class BaseFragment extends Fragment implements MvpView {
 
-    @Inject
-    MyPreferences appPrefs;
     private BaseActivity mActivity;
     private Unbinder mUnBinder;
     private FragmentComponent fragmentComponent;
@@ -84,14 +83,6 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         if (mActivity != null) {
             mActivity.showMessage(resId);
         }
-    }
-
-    @Override
-    public boolean isNetworkConnected() {
-        if (mActivity != null) {
-            return mActivity.isNetworkConnected();
-        }
-        return false;
     }
 
     @Override

@@ -80,7 +80,7 @@ public class MovieRepository {
      * @param year       optional attribute, if we want a specific year
      * @return a list of movies, encapsulated in a Single RXJava object, or an error if anything went bad.
      */
-    public Single<List<Movie>> getMovies(int pageNumber, @NotNull Date beforeDate, @Nullable Integer year) {
+    public Single<List<Movie>> getMovies(Integer pageNumber, @NotNull Date beforeDate, @Nullable Integer year) {
         return Single.defer(() -> {
             SimpleDateFormat dateFormat = new SimpleDateFormat(MOVIE_DB_DATE_FORMAT, Locale.getDefault());
             return networkService.getLatestMovie(pageNumber, dateFormat.format(beforeDate), DEFAULT_SORT_ORDER, year)

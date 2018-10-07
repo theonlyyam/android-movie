@@ -10,6 +10,9 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
+/**
+ * First activity displayed in our app. Used to initialize the app through its presenter. If any error occured, a message is displayed with the possibility to retry.
+ */
 public class SplashActivity extends BaseActivity implements SplashMvpView{
 
     @Inject
