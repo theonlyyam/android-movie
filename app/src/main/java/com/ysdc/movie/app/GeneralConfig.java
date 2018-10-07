@@ -36,4 +36,11 @@ public interface GeneralConfig {
      * @return true if the gradle build is in debug
      */
     boolean isDebug();
+
+    /**
+     * Return the API key used during the request to the backend
+     * @return
+     */
+    String getMovieDbKey();
+
 }

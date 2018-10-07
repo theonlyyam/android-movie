@@ -59,4 +59,9 @@ public class AppConfig implements GeneralConfig {
     public boolean isDebug() {
         return BuildConfig.DEBUG;
     }
+
+    @Override
+    public String getMovieDbKey() {
+        return BuildConfig.API_KEY;
+    }
 }
