@@ -28,7 +28,7 @@ import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_API;
 import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_LANGUAGE;
 
 /**
- * Created by david on 5/10/18.
+ * Class that create the retrofit instance andattached the interceptor we use in all our Http request.
  */
 
 public class NetworkServiceCreator {

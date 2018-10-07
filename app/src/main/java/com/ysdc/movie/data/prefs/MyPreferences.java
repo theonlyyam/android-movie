@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -16,12 +17,10 @@ import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 
 public class MyPreferences {
 
-    private static final String PREFS_FILENAME = "app_prefs_file";
-
     //Application parameters
-    public static final String BASE_URL = "BASE_URL";
-
-
+    public static final String IMAGES_BASE_URL = "IMAGES_BASE_URL";
+    public static final String SECURE_IMAGES_BASE_URL = "SECURE_IMAGES_BASE_URL";
+    private static final String PREFS_FILENAME = "app_prefs_file";
     private final SharedPreferences sharedPrefs;
     private final Gson gson;
 
