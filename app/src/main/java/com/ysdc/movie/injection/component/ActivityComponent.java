@@ -2,6 +2,7 @@ package com.ysdc.movie.injection.component;
 
 import com.ysdc.movie.injection.annotations.ActivityScope;
 import com.ysdc.movie.injection.module.ActivityModule;
+import com.ysdc.movie.ui.main.MainActivity;
 import com.ysdc.movie.ui.splash.SplashActivity;
 
 import dagger.Subcomponent;
@@ -14,4 +15,6 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
 
     void inject(SplashActivity splashActivity);
+
+    void inject(MainActivity mainActivity);
 }

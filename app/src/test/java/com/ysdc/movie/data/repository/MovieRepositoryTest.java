@@ -19,7 +19,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -122,7 +121,7 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void getMoviesTestSuccess() throws ParseException {
+    public void getMoviesTestSuccess() {
         DiscoverMovieResponse response = new DiscoverMovieResponse();
         List<Movie> movies = new ArrayList<>();
         movies.add(Movie.builder().withId(1).build());
@@ -134,12 +133,18 @@ public class MovieRepositoryTest {
         TestObserver<List<Movie>> testObserver = TestObserver.create();
         movieRepository.getMovies(1, new Date(), null).subscribe(testObserver);
 
+        assertEquals(Integer.valueOf(0), movieRepository.getLastSearchTotalPages());
+        assertEquals(Integer.valueOf(0), movieRepository.getLastSearchTotalResults());
+
         rxSchedulersTestRule.ioScheduler().triggerActions();
         testObserver.awaitTerminalEvent();
         testObserver.assertNoErrors();
         testObserver.assertTerminated();
         testObserver.assertResult(movies);
         verify(movieNetworkService, times(1)).getLatestMovie(any(), any(), any(), any());
+
+        assertEquals(Integer.valueOf(19043), movieRepository.getLastSearchTotalPages());
+        assertEquals(Integer.valueOf(380855), movieRepository.getLastSearchTotalResults());
     }
 
     @Test

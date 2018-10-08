@@ -4,4 +4,6 @@
     <!--EXCEPTIONS & ERRORS-->
     <string name="exception_no_connectivity">No internet connection, please try again later.</string>
     <string name="exception_undefined">Unknown error, please contact our support.</string>
+    <string name="action_retry">Retry</string>
+    <string name="no_movies_found">No movies found...</string>
 </resources>
