@@ -4,33 +4,33 @@
     android:background="@color/background_grey">
 
         <View
-            android:id="@+id/placeholder_property_img"
+            android:id="@+id/placeholder_img"
             android:layout_width="@dimen/movie_img_width"
             android:layout_height="@dimen/movie_cell_height"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/placeholder_img_margin"
             android:background="@color/placeholder_bg" />
 
         <View
-            android:id="@+id/placeholder_property_title"
+            android:id="@+id/placeholde_title"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/placeholder_text_margin"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/cell_movie_margin"
             android:layout_marginRight="@dimen/cell_movie_margin"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/placeholder_property_img"
+            android:layout_marginTop="@dimen/placeholder_img_margin"
+            android:layout_toRightOf="@id/placeholder_img"
             android:background="@color/placeholder_bg" />
 
         <View
-            android:id="@+id/placeholder_property_location"
+            android:id="@+id/placeholder_subtitle"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/placeholder_text_margin"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/placeholder_property_title"
+            android:layout_below="@id/placeholde_title"
             android:layout_marginLeft="@dimen/cell_movie_margin"
             android:layout_marginRight="@dimen/cell_movie_margin"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/placeholder_property_img"
+            android:layout_marginTop="@dimen/placeholder_text_margin_top"
+            android:layout_toRightOf="@id/placeholder_img"
             android:background="@color/placeholder_bg" />
 
 </RelativeLayout>

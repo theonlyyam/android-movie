@@ -115,11 +115,19 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
         moviesList.addOnScrollListener(scrollListener);
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            showShimmer();
             loadMovies();
         });
 
         shimmerViewContainer.startShimmer();
         loadMovies();
+    }
+
+    private void showShimmer() {
+        shimmerViewContainer.setVisibility(View.VISIBLE);
+        emptyLayout.setVisibility(View.GONE);
+        moviesList.setVisibility(View.GONE);
+        shimmerViewContainer.startShimmer();
     }
 
     private void showEmpty() {

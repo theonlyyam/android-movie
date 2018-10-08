@@ -24,8 +24,10 @@ import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 import timber.log.Timber;
 
+import static com.ysdc.movie.data.prefs.MyPreferences.DEFAULT_IMAGE_SIZE;
 import static com.ysdc.movie.data.prefs.MyPreferences.IMAGES_BASE_URL;
 import static com.ysdc.movie.data.prefs.MyPreferences.SECURE_IMAGES_BASE_URL;
+import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 import static com.ysdc.movie.utils.AppConstants.MOVIE_DB_DATE_FORMAT;
 
 /**
@@ -80,11 +82,22 @@ public class MovieRepository {
         return networkService.getconfiguration()
                 .subscribeOn(Schedulers.io())
                 .doOnSuccess(configurationResponse -> {
+                    //We store in the preferences the URLs and default imag size, in case we need them somewhere else, but in the current state of the app we
+                    //could avoid it
                     preferences.set(IMAGES_BASE_URL, configurationResponse.getImageBaseUrl());
                     preferences.set(SECURE_IMAGES_BASE_URL, configurationResponse.getSecureImageVaseUrl());
+                    //TODO: define a mechanism to define, based on the phone resolution, the image size we should query for
+                    preferences.set(DEFAULT_IMAGE_SIZE, "w500");
+
+                    networkMovieMapper.setImageBaseUrl(configurationResponse.getSecureImageVaseUrl());
+                    networkMovieMapper.setImageDefaultSize("w500");
                 }).onErrorResumeNext(throwable -> {
                     preferences.remove(IMAGES_BASE_URL);
                     preferences.remove(SECURE_IMAGES_BASE_URL);
+                    preferences.remove(DEFAULT_IMAGE_SIZE);
+
+                    networkMovieMapper.setImageBaseUrl(EMPTY_STRING);
+                    networkMovieMapper.setImageDefaultSize(EMPTY_STRING);
                     return Single.error(analyzeError(throwable));
                 })
                 .ignoreElement();

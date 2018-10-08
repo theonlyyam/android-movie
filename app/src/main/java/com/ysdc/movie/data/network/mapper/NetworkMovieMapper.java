@@ -4,6 +4,7 @@ import com.crashlytics.android.Crashlytics;
 import com.ysdc.movie.data.model.Movie;
 import com.ysdc.movie.data.network.model.DiscoverMovieResponse;
 import com.ysdc.movie.data.network.model.MovieResponse;
+import com.ysdc.movie.data.prefs.MyPreferences;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +14,11 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
+import static com.ysdc.movie.data.prefs.MyPreferences.DEFAULT_IMAGE_SIZE;
+import static com.ysdc.movie.data.prefs.MyPreferences.SECURE_IMAGES_BASE_URL;
+import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 import static com.ysdc.movie.utils.AppConstants.MOVIE_DB_DATE_FORMAT;
+import static com.ysdc.movie.utils.AppConstants.URL_SEPARATOR;
 
 /**
  * Class that transform the network response content in final Business Object, used by our application.
@@ -21,9 +26,19 @@ import static com.ysdc.movie.utils.AppConstants.MOVIE_DB_DATE_FORMAT;
 public class NetworkMovieMapper {
 
     private final SimpleDateFormat dateFormat;
+    private String imageBaseUrl;
+    private String imageDefaultSize;
 
     public NetworkMovieMapper() {
         this.dateFormat = new SimpleDateFormat(MOVIE_DB_DATE_FORMAT, Locale.getDefault());
+    }
+
+    public void setImageBaseUrl(String imageBaseUrl) {
+        this.imageBaseUrl = imageBaseUrl;
+    }
+
+    public void setImageDefaultSize(String imageDefaultSize) {
+        this.imageDefaultSize = imageDefaultSize;
     }
 
     /**
@@ -40,7 +55,7 @@ public class NetworkMovieMapper {
                 .withTagline(response.getTagline())
                 .withOverview(response.getOverview())
                 .withVote(response.getVote())
-                .withPoster(response.getPoster());
+                .withPoster(buildImageUrl(response.getPoster()));
 
         if (response.getReleaseDate() != null) {
             try {
@@ -77,5 +92,9 @@ public class NetworkMovieMapper {
             movies.add(parseMovieResponse(movieResponse));
         }
         return movies;
+    }
+
+    private String buildImageUrl(String imageUrl) {
+        return imageBaseUrl + imageDefaultSize + URL_SEPARATOR + imageUrl;
     }
 }

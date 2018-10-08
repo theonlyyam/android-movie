@@ -20,7 +20,7 @@ import dagger.Provides;
 public class RepositoryModule {
 
     @Provides
-    public NetworkMovieMapper provideNetworkMovieMapper(){
+    public NetworkMovieMapper provideNetworkMovieMapper() {
         return new NetworkMovieMapper();
     }
 
