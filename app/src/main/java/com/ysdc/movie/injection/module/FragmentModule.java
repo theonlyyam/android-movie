@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import com.ysdc.movie.data.repository.MovieRepository;
 import com.ysdc.movie.injection.annotations.ActivityScope;
 import com.ysdc.movie.injection.annotations.FragmentScope;
+import com.ysdc.movie.ui.moviedetails.MovieDetailsMvpPresenter;
+import com.ysdc.movie.ui.moviedetails.MovieDetailsMvpView;
+import com.ysdc.movie.ui.moviedetails.MovieDetailsPresenter;
 import com.ysdc.movie.ui.movielist.MovieListMvpPresenter;
 import com.ysdc.movie.ui.movielist.MovieListMvpView;
 import com.ysdc.movie.ui.movielist.MovieListPresenter;
@@ -42,5 +45,11 @@ public class FragmentModule {
     @FragmentScope
     MovieListMvpPresenter<MovieListMvpView> provideMovieListPresenter(MovieRepository movieRepository) {
         return new MovieListPresenter<>(movieRepository);
+    }
+
+    @Provides
+    @FragmentScope
+    MovieDetailsMvpPresenter<MovieDetailsMvpView> provideMovieDetailsPresenter() {
+        return new MovieDetailsPresenter<>();
     }
 }

@@ -16,6 +16,7 @@
 package com.ysdc.movie.ui.base;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -103,6 +104,10 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         super.onResume();
     }
 
+    @Override
+    public Resources provideResources(){
+        return getBaseActivity().getResources();
+    }
 
     @Override
     public void onDestroy() {

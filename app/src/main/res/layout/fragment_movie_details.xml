@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/middle_h_margin_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".5" />
+
+            <ImageView
+                android:id="@+id/movie_img"
+                android:layout_width="@dimen/null_dimen"
+                android:layout_height="@dimen/null_dimen"
+                android:src="@drawable/test"
+                app:layout_constraintDimensionRatio="h,2:3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/middle_h_margin_guide"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="@dimen/null_dimen"
+                android:layout_height="@dimen/null_dimen"
+                android:orientation="vertical"
+                android:padding="@dimen/movie_details_layout_padding"
+                app:layout_constraintBottom_toBottomOf="@id/movie_img"
+                app:layout_constraintLeft_toRightOf="@id/middle_h_margin_guide"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_original_title"
+                    android:textSize="@dimen/title_size" />
+
+                <TextView
+                    android:id="@+id/movie_original_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/value_field_bottom_margin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/value_size"
+                    tools:text="This was the title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_release_date"
+                    android:textSize="@dimen/title_size" />
+
+                <TextView
+                    android:id="@+id/movie_release_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/value_field_bottom_margin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/value_size"
+                    tools:text="2018-10-21" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_genre"
+                    android:textSize="@dimen/title_size" />
+
+                <TextView
+                    android:id="@+id/movie_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/value_field_bottom_margin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/value_size"
+                    tools:text="Actiom, drama" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_vote"
+                    android:textSize="@dimen/title_size" />
+
+                <TextView
+                    android:id="@+id/movie_vote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/value_field_bottom_margin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/value_size"
+                    tools:text="4.6 (123 votes)" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/movie_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/movie_overview_top_margin"
+                android:gravity="top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/value_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_img"
+                android:layout_marginLeft="@dimen/movie_details_layout_padding"
+                android:layout_marginRight="@dimen/movie_details_layout_padding"
+                tools:text="this is a movie description" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

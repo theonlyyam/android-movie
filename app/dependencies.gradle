@@ -28,7 +28,8 @@ ext {
         robolectric     : '4.0-alpha-3',
         assertj         : '1.2.0',
         photoview       : '2.0.0',
-        shimmer         : '0.3.0@aar'
+        shimmer         : '0.3.0@aar',
+        datepicker      : '1.3.0'
 
 
     ]
@@ -86,8 +87,9 @@ ext {
     ]
 
     ui = [
-        photoview : "com.github.chrisbanes:PhotoView:$versions.photoview",
-        shimmer   : "com.facebook.shimmer:shimmer:$versions.shimmer"
+        photoview  : "com.github.chrisbanes:PhotoView:$versions.photoview",
+        shimmer    : "com.facebook.shimmer:shimmer:$versions.shimmer",
+        datepicker : "com.whiteelephant:monthandyearpicker:$versions.datepicker"
     ]
 
     unitTest = [

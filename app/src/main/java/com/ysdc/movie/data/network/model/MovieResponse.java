@@ -14,12 +14,16 @@ public class MovieResponse {
     private Integer id;
     @SerializedName("title")
     private String title;
+    @SerializedName("original_title")
+    private String originalTitle;
     @SerializedName("tagline")
     private String tagline;
     @SerializedName("overview")
     private String overview;
     @SerializedName("vote_average")
-    private Float vote;
+    private Float voteAverage;
+    @SerializedName("vote_count")
+    private Integer voteCount;
     @SerializedName("poster_path")
     private String poster;
     @SerializedName("release_date")
@@ -39,6 +43,10 @@ public class MovieResponse {
         return title;
     }
 
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
     public String getTagline() {
         return tagline;
     }
@@ -47,8 +55,12 @@ public class MovieResponse {
         return overview;
     }
 
-    public Float getVote() {
-        return vote;
+    public Float getVoteAverage() {
+        return voteAverage;
+    }
+
+    public Integer getVoteCount() {
+        return voteCount;
     }
 
     public String getPoster() {

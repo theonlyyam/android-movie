@@ -8,4 +8,10 @@
     <dimen name="placeholder_text_margin">20dp</dimen>
     <dimen name="placeholder_text_margin_top">5dp</dimen>
     <dimen name="small_elevation">1dp</dimen>
+    <dimen name="null_dimen">0dp</dimen>
+    <dimen name="title_size">10sp</dimen>
+    <dimen name="value_size">14sp</dimen>
+    <dimen name="value_field_bottom_margin">10dp</dimen>
+    <dimen name="movie_details_layout_padding">10dp</dimen>
+    <dimen name="movie_overview_top_margin">10dp</dimen>
 </resources>

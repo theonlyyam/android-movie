@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 public interface MovieNetworkService {
 
     String PARAMETER_ORDER = "sort_by";
-    String PARAMETER_RELEASE_BEFORE = "primary_release_date.lte";
+    String PARAMETER_RELEASE_BEFORE = "release_date.lte";
     String PARAMETER_PAGE = "page";
     String PARAMETER_FILTER_YEAR = "primary_release_year";
     String PARAMETER_MOVIE_ID = "movie_id";

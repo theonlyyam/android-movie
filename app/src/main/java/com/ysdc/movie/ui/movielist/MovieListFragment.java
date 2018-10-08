@@ -8,7 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -33,6 +35,7 @@ import timber.log.Timber;
 
 public class MovieListFragment extends BaseFragment implements MovieListMvpView {
 
+    private static final String EXTRA_EXISTING_DATA = "EXTRA_EXISTING_DATA";
     @BindView(R.id.layout_empty)
     protected RelativeLayout emptyLayout;
     @BindView(R.id.movies_list)
@@ -45,6 +48,7 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
     protected ShimmerFrameLayout shimmerViewContainer;
     @Inject
     MovieListMvpPresenter<MovieListMvpView> presenter;
+
     private MovieSelectionListener movieSelectionListener;
     private CompositeDisposable compositeDisposable;
     private EndlessRecyclerOnScrollListener scrollListener;
@@ -58,11 +62,13 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
 
+        getBaseActivity().getSupportActionBar().setTitle(R.string.app_name);
+        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         getFragmentComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
 
         presenter.onAttach(MovieListFragment.this);
-
         return view;
     }
 
@@ -119,8 +125,12 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
             loadMovies();
         });
 
-        shimmerViewContainer.startShimmer();
-        loadMovies();
+        if(presenter.isMovieListInitialized()){
+            moviesList.setAdapter(adapter);
+        }else{
+            showShimmer();
+            loadMovies();
+        }
     }
 
     private void showShimmer() {

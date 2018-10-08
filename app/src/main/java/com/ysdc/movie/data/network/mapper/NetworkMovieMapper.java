@@ -4,7 +4,6 @@ import com.crashlytics.android.Crashlytics;
 import com.ysdc.movie.data.model.Movie;
 import com.ysdc.movie.data.network.model.DiscoverMovieResponse;
 import com.ysdc.movie.data.network.model.MovieResponse;
-import com.ysdc.movie.data.prefs.MyPreferences;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,11 +13,7 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-import static com.ysdc.movie.data.prefs.MyPreferences.DEFAULT_IMAGE_SIZE;
-import static com.ysdc.movie.data.prefs.MyPreferences.SECURE_IMAGES_BASE_URL;
-import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 import static com.ysdc.movie.utils.AppConstants.MOVIE_DB_DATE_FORMAT;
-import static com.ysdc.movie.utils.AppConstants.URL_SEPARATOR;
 
 /**
  * Class that transform the network response content in final Business Object, used by our application.
@@ -52,9 +47,11 @@ public class NetworkMovieMapper {
         Movie.Builder builder = Movie.builder()
                 .withId(response.getId())
                 .withTitle(response.getTitle())
+                .withOriginalTitle(response.getOriginalTitle())
                 .withTagline(response.getTagline())
                 .withOverview(response.getOverview())
-                .withVote(response.getVote())
+                .withVoteAverage(response.getVoteAverage())
+                .withVoteCount(response.getVoteCount())
                 .withPoster(buildImageUrl(response.getPoster()));
 
         if (response.getReleaseDate() != null) {
@@ -95,6 +92,6 @@ public class NetworkMovieMapper {
     }
 
     private String buildImageUrl(String imageUrl) {
-        return imageBaseUrl + imageDefaultSize + URL_SEPARATOR + imageUrl;
+        return imageBaseUrl + imageDefaultSize + imageUrl;
     }
 }

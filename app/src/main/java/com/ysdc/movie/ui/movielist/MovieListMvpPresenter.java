@@ -24,4 +24,6 @@ public interface MovieListMvpPresenter<V extends MovieListMvpView> extends MvpPr
     Integer getYearSelected();
 
     void setYearSelected(Integer yearSelected);
+
+    boolean isMovieListInitialized();
 }

@@ -26,6 +26,7 @@ import timber.log.Timber;
 
 import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_API;
 import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_LANGUAGE;
+import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_REGION;
 
 /**
  * Class that create the retrofit instance andattached the interceptor we use in all our Http request.
@@ -61,6 +62,7 @@ public class NetworkServiceCreator {
         addInterceptor(new ConnectivityInterceptor(application.getApplicationContext(), networkUtils));
         addInterceptor(new BasicQueryInterceptor(NETWORK_KEY_API, generalConfig.getMovieDbKey()));
         addInterceptor(new BasicQueryInterceptor(NETWORK_KEY_LANGUAGE, Locale.getDefault().getLanguage()));
+        addInterceptor(new BasicQueryInterceptor(NETWORK_KEY_REGION, Locale.getDefault().getCountry()));
     }
 
     /**
