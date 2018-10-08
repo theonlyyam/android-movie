@@ -1,9 +1,11 @@
 package com.ysdc.movie.ui.base;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -76,6 +78,11 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     @Override
     public void showMessage(@StringRes int resId) {
         showMessage(getString(resId));
+    }
+
+    @Override
+    public Resources provideResources(){
+        return getResources();
     }
 
     @Override

@@ -6,4 +6,14 @@
     <string name="exception_undefined">Unknown error, please contact our support.</string>
     <string name="action_retry">Retry</string>
     <string name="no_movies_found">No movies found...</string>
+    <string name="movie_release_date">Release Date</string>
+    <string name="movie_genre">Genres</string>
+    <string name="movie_vote">Vote Average</string>
+    <string name="movie_original_title">Original Title</string>
+
+    <plurals name="vote_format">
+        <item quantity="zero">No vote information</item>
+        <item quantity="one">%2f (%d vote)</item>
+        <item quantity="other">%2f (%d votes)</item>
+    </plurals>
 </resources>

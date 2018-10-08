@@ -27,13 +27,16 @@ import static org.junit.Assert.assertNull;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NetworkMovieMapperTest {
-
+    private static final String BASE_IMG_URL = "http://foo.bar/";
+    private static final String DEFAULT_IMG_SIZE = "500W";
 
     private NetworkMovieMapper mapper;
 
     @Before
     public void setUp() {
         mapper = new NetworkMovieMapper();
+        mapper.setImageDefaultSize(DEFAULT_IMG_SIZE);
+        mapper.setImageBaseUrl(BASE_IMG_URL);
     }
 
     @Test
@@ -49,8 +52,8 @@ public class NetworkMovieMapperTest {
         assertEquals("Deadpool 2", movie.getTitle());
         assertEquals("Prepare for the Second Coming.", movie.getTagline());
         assertEquals("Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.", movie.getOverview());
-        assertEquals(7.5f, movie.getVote(), 0.0f);
-        assertEquals("/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg", movie.getPoster());
+        assertEquals(7.5f, movie.getVoteAverage(), 0.0f);
+        assertEquals(BASE_IMG_URL + DEFAULT_IMG_SIZE + "/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg", movie.getPoster());
         assertEquals(releaseDate, movie.getReleaseDate());
         assertEquals(3, movie.getGenres().size());
         assertEquals("Action", movie.getGenres().get(0));
@@ -62,6 +65,7 @@ public class NetworkMovieMapperTest {
         Date releaseDate = dateFormat.parse("2018-10-03");
 
         DiscoverMovieResponse response = readJsonFromFile("discover_movies.json", DiscoverMovieResponse.class);
+
         List<Movie> movies = mapper.parseMoviesResponse(response);
 
         assertNotNull(movies);
@@ -72,8 +76,8 @@ public class NetworkMovieMapperTest {
         assertEquals("Venom", movie.getTitle());
         assertNull(movie.getTagline());
         assertEquals("When Eddie Brock acquires the powers of a symbiote, he will have to release his alter-ego “Venom” to save his life.", movie.getOverview());
-        assertEquals(6.6f, movie.getVote(), 0.0f);
-        assertEquals("/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg", movie.getPoster());
+        assertEquals(6.6f, movie.getVoteAverage(), 0.0f);
+        assertEquals(BASE_IMG_URL + DEFAULT_IMG_SIZE + "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg", movie.getPoster());
         assertEquals(releaseDate, movie.getReleaseDate());
         assertEquals(0, movie.getGenres().size());
     }

@@ -22,7 +22,6 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
 
     private static final int INITIAL_PAGE = 1;
     private final MovieRepository movieRepository;
-    private final CompositeDisposable compositeDisposable;
     private final AtomicBoolean queryInProgress = new AtomicBoolean(false);
     private List<Movie> movies;
     private int currentPage;
@@ -32,8 +31,6 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
     public MovieListPresenter(MovieRepository movieRepository) {
         super();
         this.movieRepository = movieRepository;
-        this.compositeDisposable = new CompositeDisposable();
-        initializeMovies();
     }
 
     @Override
@@ -43,7 +40,6 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
 
     @Override
     public void onDetach() {
-        compositeDisposable.dispose();
         super.onDetach();
     }
 
@@ -65,8 +61,7 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
 
     @Override
     public Single<Movie> getMovie(int movieId) {
-        return movieRepository.getMovie(movieId)
-                .subscribeOn(Schedulers.io());
+        return movieRepository.getMovie(movieId).subscribeOn(Schedulers.io());
     }
 
     @Override
@@ -98,5 +93,10 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
     @Override
     public void setYearSelected(Integer yearSelected) {
         this.yearSelected = yearSelected;
+    }
+
+    @Override
+    public boolean isMovieListInitialized() {
+        return movies != null;
     }
 }
