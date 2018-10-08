@@ -104,11 +104,11 @@ public class MovieRepository {
             SimpleDateFormat dateFormat = new SimpleDateFormat(MOVIE_DB_DATE_FORMAT, Locale.getDefault());
             return networkService.getLatestMovie(pageNumber, dateFormat.format(beforeDate), DEFAULT_SORT_ORDER, year)
                     .subscribeOn(Schedulers.io())
-                    .doOnSuccess(discoverMovieResponse -> {
-                        lastSearchTotalPages = discoverMovieResponse.getPages();
-                        lastSearchTotalResults = discoverMovieResponse.getTotal();
+                    .map(discoverMovieResponse -> {
+                        this.lastSearchTotalPages = discoverMovieResponse.getPages();
+                        this.lastSearchTotalResults = discoverMovieResponse.getTotal();
+                        return networkMovieMapper.parseMoviesResponse(discoverMovieResponse);
                     })
-                    .map(networkMovieMapper::parseMoviesResponse)
                     .onErrorResumeNext(throwable -> Single.error(analyzeError(throwable)));
         });
     }

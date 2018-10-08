@@ -123,6 +123,8 @@ public class MovieRepositoryTest {
     @Test
     public void getMoviesTestSuccess() {
         DiscoverMovieResponse response = new DiscoverMovieResponse();
+        response.setPages(19043);
+        response.setTotal(380855);
         List<Movie> movies = new ArrayList<>();
         movies.add(Movie.builder().withId(1).build());
         movies.add(Movie.builder().withId(2).build());
@@ -143,6 +145,7 @@ public class MovieRepositoryTest {
         testObserver.assertResult(movies);
         verify(movieNetworkService, times(1)).getLatestMovie(any(), any(), any(), any());
 
+        rxSchedulersTestRule.mainScheduler().triggerActions();
         assertEquals(Integer.valueOf(19043), movieRepository.getLastSearchTotalPages());
         assertEquals(Integer.valueOf(380855), movieRepository.getLastSearchTotalResults());
     }

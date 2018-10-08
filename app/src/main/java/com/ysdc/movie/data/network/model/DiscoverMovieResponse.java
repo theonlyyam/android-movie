@@ -1,5 +1,7 @@
 package com.ysdc.movie.data.network.model;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -31,5 +33,15 @@ public class DiscoverMovieResponse {
 
     public List<MovieResponse> getMovies() {
         return movies;
+    }
+
+    @VisibleForTesting
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    @VisibleForTesting
+    public void setPages(Integer pages) {
+        this.pages = pages;
     }
 }
