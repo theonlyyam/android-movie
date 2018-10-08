@@ -24,6 +24,8 @@ public class MyPreferences {
     public static final String IMAGES_BASE_URL = "IMAGES_BASE_URL";
     public static final String SECURE_IMAGES_BASE_URL = "SECURE_IMAGES_BASE_URL";
 
+    //Store the image size we have to query for
+    public static final String DEFAULT_IMAGE_SIZE = "DEFAULT_IMAGE_SIZE";
 
     private final SharedPreferences sharedPrefs;
     private final Gson gson;

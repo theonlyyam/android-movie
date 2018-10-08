@@ -6,7 +6,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.ysdc.movie.BuildConfig;
 import com.ysdc.movie.app.GeneralConfig;
-import com.ysdc.movie.data.network.config.interceptor.BasicInterceptor;
+import com.ysdc.movie.data.network.config.interceptor.BasicQueryInterceptor;
 import com.ysdc.movie.data.network.config.interceptor.ConnectivityInterceptor;
 import com.ysdc.movie.utils.NetworkUtils;
 
@@ -59,8 +59,8 @@ public class NetworkServiceCreator {
         }
         addInterceptor(httpLoggingInterceptor);
         addInterceptor(new ConnectivityInterceptor(application.getApplicationContext(), networkUtils));
-        addInterceptor(new BasicInterceptor(NETWORK_KEY_API, generalConfig.getMovieDbKey()));
-        addInterceptor(new BasicInterceptor(NETWORK_KEY_LANGUAGE, Locale.getDefault().getLanguage()));
+        addInterceptor(new BasicQueryInterceptor(NETWORK_KEY_API, generalConfig.getMovieDbKey()));
+        addInterceptor(new BasicQueryInterceptor(NETWORK_KEY_LANGUAGE, Locale.getDefault().getLanguage()));
     }
 
     /**

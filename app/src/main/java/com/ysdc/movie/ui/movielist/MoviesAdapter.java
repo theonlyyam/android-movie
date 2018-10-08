@@ -86,7 +86,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         protected void updatePicture(String imageUrl) {
             GlideApp.with(img.getContext())
                     .load(imageUrl)
-                    .centerCrop()
                     .placeholder(R.drawable.movie_placeholder)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

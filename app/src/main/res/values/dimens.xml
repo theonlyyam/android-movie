@@ -2,5 +2,10 @@
 
     <dimen name="movie_cell_height">100dp</dimen>
     <dimen name="movie_img_width">80dp</dimen>
+    <dimen name="movie_img_height">120dp</dimen>
     <dimen name="cell_movie_margin">10dp</dimen>
+    <dimen name="placeholder_img_margin">5dp</dimen>
+    <dimen name="placeholder_text_margin">20dp</dimen>
+    <dimen name="placeholder_text_margin_top">5dp</dimen>
+    <dimen name="small_elevation">1dp</dimen>
 </resources>

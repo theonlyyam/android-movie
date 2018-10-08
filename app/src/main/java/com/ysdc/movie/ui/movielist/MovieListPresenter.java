@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MovieListPresenter<V extends MovieListMvpView> extends BasePresenter<V> implements MovieListMvpPresenter<V> {
 
-    private static final int INITIAL_PAGE = 0;
+    private static final int INITIAL_PAGE = 1;
     private final MovieRepository movieRepository;
     private final CompositeDisposable compositeDisposable;
     private final AtomicBoolean queryInProgress = new AtomicBoolean(false);
@@ -65,7 +65,8 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
 
     @Override
     public Single<Movie> getMovie(int movieId) {
-        return null;
+        return movieRepository.getMovie(movieId)
+                .subscribeOn(Schedulers.io());
     }
 
     @Override
@@ -87,5 +88,15 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
             currentPage++;
             return getMovies();
         });
+    }
+
+    @Override
+    public Integer getYearSelected() {
+        return yearSelected;
+    }
+
+    @Override
+    public void setYearSelected(Integer yearSelected) {
+        this.yearSelected = yearSelected;
     }
 }

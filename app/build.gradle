@@ -36,7 +36,7 @@ android {
             debuggable true
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "MEMORY_ANALIZE", "false"
-            buildConfigField "String", "BASE_URL", "\"https://developers.themoviedb.org/3/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
             buildConfigField "String", "API_KEY", "\"667ceec69b45f0f39191a8ee1e7bf8d6\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             shrinkResources false
@@ -45,7 +45,7 @@ android {
             minifyEnabled true
             signingConfig signingConfigs.release
             buildConfigField "boolean", "MEMORY_ANALIZE", "true"
-            buildConfigField "String", "BASE_URL", "\"https://developers.themoviedb.org/3/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
             buildConfigField "String", "API_KEY", "\"667ceec69b45f0f39191a8ee1e7bf8d6\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             shrinkResources false

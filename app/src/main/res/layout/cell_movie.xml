@@ -8,9 +8,8 @@
     <ImageView
         android:id="@+id/movie_img"
         android:layout_width="@dimen/movie_img_width"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/cell_movie_margin"
-        tools:src="@drawable/movie_placeholder" />
+        android:layout_height="@dimen/movie_img_height"
+        android:layout_marginLeft="@dimen/cell_movie_margin"/>
 
     <TextView
         android:id="@+id/movie_title"

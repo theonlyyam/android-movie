@@ -15,4 +15,8 @@ public class AppConstants {
 
     //Date format used by TheMovieDB endpoints requests and responses
     public static final String MOVIE_DB_DATE_FORMAT = "yyyy-MM-dd";
+
+
+    //Url separator
+    public static final String URL_SEPARATOR = "/";
 }

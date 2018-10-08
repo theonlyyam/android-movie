@@ -20,4 +20,8 @@ public interface MovieListMvpPresenter<V extends MovieListMvpView> extends MvpPr
     Single<Movie> getMovie(int movieId);
 
     Single<List<Movie>> getMoreMovies();
+
+    Integer getYearSelected();
+
+    void setYearSelected(Integer yearSelected);
 }

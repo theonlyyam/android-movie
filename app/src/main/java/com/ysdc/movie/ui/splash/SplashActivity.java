@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import com.crashlytics.android.Crashlytics;
 import com.ysdc.movie.R;
 import com.ysdc.movie.ui.base.BaseActivity;
+import com.ysdc.movie.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,9 @@ public class SplashActivity extends BaseActivity implements SplashMvpView{
     @Override
     public void applicationInitialized() {
         hideProgress();
+        startActivity(MainActivity.getInstance(this));
+        finish();
+
     }
 
     @Override

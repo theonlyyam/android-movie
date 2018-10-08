@@ -24,7 +24,7 @@ public interface MovieNetworkService {
 
     String URL_CONFIGURATION = "configuration";
     String URL_DISCOVER_MOVIE = "discover/movie";
-    String URL_MOVIE_DETAILS = "/movie/{" + PARAMETER_MOVIE_ID + "}";
+    String URL_MOVIE_DETAILS = "movie/{" + PARAMETER_MOVIE_ID + "}";
 
     @GET(URL_CONFIGURATION)
     Single<ConfigurationResponse> getconfiguration();
