@@ -1,25 +1,22 @@
-
 package com.ysdc.movie.app;
 
 import android.app.Application;
 import android.content.pm.PackageManager;
 
 import com.ysdc.movie.BuildConfig;
-import com.ysdc.movie.data.model.Version;
 
 import timber.log.Timber;
 
 import static com.ysdc.movie.utils.AppConstants.EMPTY_STRING;
 
 /**
- * Class used to access all application specific information, such as version
- * Created by david on 5/10/18.
+ * Class used to access all application specific information, such as version, MovieDB Key or debug mode
  */
 
 public class AppConfig implements GeneralConfig {
 
-    private String locale;
     private final Application application;
+    private String locale;
 
     public AppConfig(Application application) {
         this.application = application;
@@ -51,12 +48,12 @@ public class AppConfig implements GeneralConfig {
     }
 
     @Override
-    public Version getCurrentAppVersion() {
-        return new Version(BuildConfig.VERSION_NAME);
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
     }
 
     @Override
-    public boolean isDebug() {
-        return BuildConfig.DEBUG;
+    public String getMovieDbKey() {
+        return BuildConfig.API_KEY;
     }
 }

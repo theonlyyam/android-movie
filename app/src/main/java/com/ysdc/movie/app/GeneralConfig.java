@@ -1,10 +1,7 @@
 package com.ysdc.movie.app;
 
-import com.ysdc.movie.data.model.Version;
-
 /**
  * interface used to access all application specific information, such as version
- * Created by david on 5/10/18.
  */
 
 public interface GeneralConfig {
@@ -27,13 +24,15 @@ public interface GeneralConfig {
     long getVersionCode();
 
     /**
-     * @return an Version Object representing the Current version of the App
-     */
-    Version getCurrentAppVersion();
-
-    /**
-     *
      * @return true if the gradle build is in debug
      */
     boolean isDebug();
+
+    /**
+     * Return the API key used during the request to the backend
+     *
+     * @return
+     */
+    String getMovieDbKey();
+
 }

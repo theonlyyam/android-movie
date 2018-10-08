@@ -1,10 +1,6 @@
 package com.ysdc.movie.app;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
@@ -22,16 +18,11 @@ import timber.log.Timber;
 
 /**
  * Override the default Android application to initialize some of our dependencies (logging, firebase tools, etc.)
- * Created by david on 5/10/18.
  */
 
-public class MyApplication extends MultiDexApplication implements Application
-        .ActivityLifecycleCallbacks {
+public class MyApplication extends MultiDexApplication {
 
     private AppComponent appComponent;
-
-    //Utility
-    private int numStarted = 0;
 
     /**
      * Called when the application is starting, before any other application objects have been
@@ -43,8 +34,6 @@ public class MyApplication extends MultiDexApplication implements Application
         super.onCreate();
 
         initDagger();
-
-        registerActivityLifecycleCallbacks(this);
 
         if (BuildConfig.DEBUG) {
             //Init Timber
@@ -68,25 +57,6 @@ public class MyApplication extends MultiDexApplication implements Application
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(MyApplication.this);
-    }
-
-    /**
-     * Called by the system when the device configuration changes while your component is running.
-     *
-     * @param newConfig the new configuration
-     */
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    /**
-     * This is called when the overall system is running low on memory, and would like actively
-     * running processes to tighten their belts
-     */
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
     }
 
     public AppComponent getAppComponent() {
@@ -114,50 +84,5 @@ public class MyApplication extends MultiDexApplication implements Application
                 .appModule(new AppModule(this))
                 .build();
         appComponent.inject(this);
-    }
-
-    /**
-     * APPLICATION ACTIVITIES LIFECYCLE
-     */
-
-    @Override
-    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    public void onActivityStarted(Activity activity) {
-        if (numStarted == 0) {
-            //TODO: If we want to do operations when the application enter its first activity
-        }
-        numStarted++;
-    }
-
-    @Override
-    public void onActivityResumed(Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityPaused(Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityStopped(Activity activity) {
-        numStarted--;
-        if (numStarted == 0) {
-
-        }
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-    }
-
-    @Override
-    public void onActivityDestroyed(Activity activity) {
-
     }
 }

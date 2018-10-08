@@ -6,11 +6,13 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.ysdc.movie.BuildConfig;
 import com.ysdc.movie.app.GeneralConfig;
+import com.ysdc.movie.data.network.config.interceptor.BasicInterceptor;
 import com.ysdc.movie.data.network.config.interceptor.ConnectivityInterceptor;
 import com.ysdc.movie.utils.NetworkUtils;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -22,8 +24,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
+import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_API;
+import static com.ysdc.movie.utils.AppConstants.NETWORK_KEY_LANGUAGE;
+
 /**
- * Created by david on 5/10/18.
+ * Class that create the retrofit instance andattached the interceptor we use in all our Http request.
  */
 
 public class NetworkServiceCreator {
@@ -54,6 +59,8 @@ public class NetworkServiceCreator {
         }
         addInterceptor(httpLoggingInterceptor);
         addInterceptor(new ConnectivityInterceptor(application.getApplicationContext(), networkUtils));
+        addInterceptor(new BasicInterceptor(NETWORK_KEY_API, generalConfig.getMovieDbKey()));
+        addInterceptor(new BasicInterceptor(NETWORK_KEY_LANGUAGE, Locale.getDefault().getLanguage()));
     }
 
     /**

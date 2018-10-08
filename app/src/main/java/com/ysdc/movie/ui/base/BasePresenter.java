@@ -3,15 +3,15 @@ package com.ysdc.movie.ui.base;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Created by david on 5/10/18.
+ * Base presenter that contains what every presenter needs. For this application, there is not so much, only the RX disposable.
  */
 
 public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
-    protected final CompositeDisposable compositeDisposable;
+    private final CompositeDisposable compositeDisposable;
     private V mvpView;
 
-    public BasePresenter() {
+    protected BasePresenter() {
         super();
         this.compositeDisposable = new CompositeDisposable();
     }
