@@ -27,15 +27,11 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         mvpView = null;
     }
 
-    public boolean isViewAttached() {
-        return mvpView != null;
-    }
-
-    public V getMvpView() {
+    protected V getMvpView() {
         return mvpView;
     }
 
-    public CompositeDisposable getCompositeDisposable() {
+    protected CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
     }
 

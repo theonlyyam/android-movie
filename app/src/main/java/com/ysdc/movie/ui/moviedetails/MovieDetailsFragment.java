@@ -22,7 +22,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class MovieDetailsFragment extends BaseFragment implements MovieDetailsMvpView {
 
@@ -64,8 +63,10 @@ public class MovieDetailsFragment extends BaseFragment implements MovieDetailsMv
         }
         presenter.onAttach(MovieDetailsFragment.this);
 
-        getBaseActivity().getSupportActionBar().setTitle(presenter.getTitle());
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getBaseActivity().getSupportActionBar() != null){
+            getBaseActivity().getSupportActionBar().setTitle(presenter.getTitle());
+            getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         setHasOptionsMenu(true);
 
         return view;
@@ -87,7 +88,7 @@ public class MovieDetailsFragment extends BaseFragment implements MovieDetailsMv
 
     @Override
     protected void setUp(View view) {
-        GlideApp.with(getActivity())
+        GlideApp.with(getBaseActivity())
                 .load(presenter.getMovieImg())
                 .placeholder(R.drawable.movie_placeholder)
                 .transition(DrawableTransitionOptions.withCrossFade())

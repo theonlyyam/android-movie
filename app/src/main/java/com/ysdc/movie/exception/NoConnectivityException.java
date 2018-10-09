@@ -3,7 +3,7 @@ package com.ysdc.movie.exception;
 import java.io.IOException;
 
 /**
- * Created by david on 5/10/18.
+ * Exception raised when we have no connection
  */
 
 public class NoConnectivityException extends IOException {

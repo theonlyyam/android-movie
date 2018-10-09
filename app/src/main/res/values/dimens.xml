@@ -14,4 +14,18 @@
     <dimen name="value_field_bottom_margin">10dp</dimen>
     <dimen name="movie_details_layout_padding">10dp</dimen>
     <dimen name="movie_overview_top_margin">10dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="elevation_high">6dp</dimen>
+    <dimen name="filter_title_left_margin">16dp</dimen>
+    <dimen name="filter_pad_top">2dp</dimen>
+    <dimen name="filter_title_size">18sp</dimen>
+    <dimen name="search_padding_h">10dp</dimen>
+    <dimen name="search_padding_v">20dp</dimen>
+    <dimen name="filter_title_top">20dp</dimen>
+    <dimen name="filter_title_left">10dp</dimen>
+    <dimen name="filter_value_top">10dp</dimen>
+    <dimen name="filter_value_font">16sp</dimen>
+    <dimen name="filter_title_font">12sp</dimen>
+    <dimen name="filter_pad_margin_right">20dp</dimen>
+    <dimen name="filter_title_right">10dp</dimen>
 </resources>

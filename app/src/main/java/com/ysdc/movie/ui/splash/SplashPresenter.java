@@ -1,7 +1,10 @@
 package com.ysdc.movie.ui.splash;
 
+import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.data.repository.MovieRepository;
 import com.ysdc.movie.ui.base.BasePresenter;
+
+import java.util.Date;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -13,9 +16,11 @@ import io.reactivex.schedulers.Schedulers;
 public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> implements SplashMvpPresenter<V> {
 
     private final MovieRepository movieRepository;
+    private final MyPreferences preferences;
 
-    public SplashPresenter(MovieRepository movieRepository) {
+    public SplashPresenter(MovieRepository movieRepository, MyPreferences preferences) {
         this.movieRepository = movieRepository;
+        this.preferences = preferences;
     }
 
     @Override
@@ -24,6 +29,11 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
                 movieRepository.retrieveConfiguration()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .doOnComplete(() -> {
+                            //I have decided that when you restart the app, i reset the filters to their default value. It is a personal choice, easy to change
+                            preferences.set(MyPreferences.FILTER_FROM_DATE, 0L);
+                            preferences.set(MyPreferences.FILTER_TO_DATE, new Date().getTime());
+                        })
                         .subscribe(() -> getMvpView().applicationInitialized(), throwable -> getMvpView().onConfigurationRetrivalError(throwable))
         );
     }

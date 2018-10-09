@@ -23,7 +23,7 @@ public class BasicQueryInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
-        HttpUrl url = original.url().newBuilder().addQueryParameter(keyParameterName,keyParameterValue).build();
+        HttpUrl url = original.url().newBuilder().addQueryParameter(keyParameterName, keyParameterValue).build();
         Request request = original.newBuilder().url(url).build();
         return chain.proceed(request);
     }

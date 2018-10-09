@@ -10,6 +10,11 @@
     <string name="movie_genre">Genres</string>
     <string name="movie_vote">Vote Average</string>
     <string name="movie_original_title">Original Title</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_search">Search</string>
+    <string name="from_date">from Date</string>
+    <string name="to_date">To Date</string>
+    <string name="invalid_date">The date range selected is invalid. Please verify them</string>
 
     <plurals name="vote_format">
         <item quantity="zero">No vote information</item>

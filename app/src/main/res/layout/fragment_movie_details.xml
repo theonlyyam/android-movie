@@ -25,7 +25,6 @@
                 android:id="@+id/movie_img"
                 android:layout_width="@dimen/null_dimen"
                 android:layout_height="@dimen/null_dimen"
-                android:src="@drawable/test"
                 app:layout_constraintDimensionRatio="h,2:3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/middle_h_margin_guide"

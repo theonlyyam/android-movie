@@ -74,10 +74,6 @@ public final class Movie implements Parcelable {
         return poster;
     }
 
-    public boolean hasPoster() {
-        return poster != null && !poster.isEmpty();
-    }
-
     public Date getReleaseDate() {
         return releaseDate;
     }

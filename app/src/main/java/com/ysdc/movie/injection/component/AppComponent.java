@@ -11,6 +11,10 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
+/**
+ *
+ * Interface that contains all the module definition
+ */
 @Component(modules = {AppModule.class, NetworkModule.class, RepositoryModule.class})
 @Singleton
 public interface AppComponent {

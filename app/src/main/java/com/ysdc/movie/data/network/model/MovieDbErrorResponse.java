@@ -4,6 +4,10 @@ import android.support.annotation.VisibleForTesting;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Class that represent the content of an error returned by MovieDB. When we receive a 401 or 404 from Movie DB, we can cast the body content to this class
+ * to get more details about the error
+ */
 public class MovieDbErrorResponse {
     @SerializedName("status_message")
     private String message;

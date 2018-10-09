@@ -8,7 +8,7 @@ import com.ysdc.movie.ui.splash.SplashActivity;
 import dagger.Subcomponent;
 
 /**
- * Created by david on 5/10/18.
+ * Interface that contains our activity in which we have to inject dependencies
  */
 @ActivityScope
 @Subcomponent(modules = {ActivityModule.class})

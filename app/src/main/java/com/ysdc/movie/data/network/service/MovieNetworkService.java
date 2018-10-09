@@ -18,8 +18,8 @@ public interface MovieNetworkService {
 
     String PARAMETER_ORDER = "sort_by";
     String PARAMETER_RELEASE_BEFORE = "release_date.lte";
+    String PARAMETER_RELEASE_AFTER = "release_date.gte";
     String PARAMETER_PAGE = "page";
-    String PARAMETER_FILTER_YEAR = "primary_release_year";
     String PARAMETER_MOVIE_ID = "movie_id";
 
     String URL_CONFIGURATION = "configuration";
@@ -31,7 +31,7 @@ public interface MovieNetworkService {
 
     @GET(URL_DISCOVER_MOVIE)
     Single<DiscoverMovieResponse> getLatestMovie(@Query(PARAMETER_PAGE) Integer page, @Query(PARAMETER_RELEASE_BEFORE) String beforeDate,
-                                                 @Query(PARAMETER_ORDER) String orderBy, @Query(PARAMETER_FILTER_YEAR) Integer Year);
+                                                 @Query(PARAMETER_RELEASE_AFTER) String afterDate, @Query(PARAMETER_ORDER) String orderBy);
 
     @GET(URL_MOVIE_DETAILS)
     Single<MovieResponse> getMovieDetails(@Path(PARAMETER_MOVIE_ID) Integer movieId);

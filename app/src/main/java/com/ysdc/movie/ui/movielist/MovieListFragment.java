@@ -8,9 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -21,6 +19,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.ysdc.movie.R;
 import com.ysdc.movie.data.model.Movie;
 import com.ysdc.movie.ui.base.BaseFragment;
+import com.ysdc.movie.ui.filter.FilterFragment;
 
 import java.util.List;
 
@@ -28,14 +27,17 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
+/**
+ * Fragment that display the list of the movies
+ */
 public class MovieListFragment extends BaseFragment implements MovieListMvpView {
 
-    private static final String EXTRA_EXISTING_DATA = "EXTRA_EXISTING_DATA";
     @BindView(R.id.layout_empty)
     protected RelativeLayout emptyLayout;
     @BindView(R.id.movies_list)
@@ -62,8 +64,10 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
 
-        getBaseActivity().getSupportActionBar().setTitle(R.string.app_name);
-        getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        if (getBaseActivity().getSupportActionBar() != null) {
+            getBaseActivity().getSupportActionBar().setTitle(R.string.app_name);
+            getBaseActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
 
         getFragmentComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
@@ -86,11 +90,6 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
             throw new IllegalArgumentException("Activity must implement MovieSelectionListener");
         }
         movieSelectionListener = (MovieSelectionListener) getBaseActivity();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override
@@ -125,12 +124,21 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
             loadMovies();
         });
 
-        if(presenter.isMovieListInitialized()){
+        if (presenter.isMovieListInitialized()) {
             moviesList.setAdapter(adapter);
-        }else{
+        } else {
             showShimmer();
             loadMovies();
         }
+    }
+
+    @OnClick(R.id.search_menu)
+    public void onSearchClicked() {
+        FilterFragment filterFragment = FilterFragment.newInstance(() -> {
+            showShimmer();
+            loadMovies();
+        });
+        filterFragment.show(getActivity().getSupportFragmentManager(), filterFragment.getTag());
     }
 
     private void showShimmer() {
@@ -179,7 +187,7 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
                     } else {
                         showMovies(movies);
                     }
-                }, throwable -> onError(throwable))
+                }, this::onError)
         );
     }
 
@@ -201,7 +209,7 @@ public class MovieListFragment extends BaseFragment implements MovieListMvpView 
                     } else {
                         showMovies(movies);
                     }
-                }, throwable -> onError(throwable))
+                }, this::onError)
         );
     }
 

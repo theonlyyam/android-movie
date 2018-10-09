@@ -6,7 +6,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.crashlytics.android.Crashlytics;
 import com.ysdc.movie.R;
 import com.ysdc.movie.ui.base.BaseActivity;
 import com.ysdc.movie.ui.main.MainActivity;
@@ -16,19 +15,17 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * First activity displayed in our app. Used to initialize the app through its presenter. If any error occured, a message is displayed with the possibility to retry.
  */
-public class SplashActivity extends BaseActivity implements SplashMvpView{
+public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Inject
     SplashMvpPresenter<SplashMvpView> presenter;
 
     @BindView(R.id.btn_retry)
-    protected  Button retryBtn;
+    protected Button retryBtn;
     @BindView(R.id.progress)
     protected ProgressBar progressBar;
 
@@ -49,13 +46,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView{
         super.onDestroy();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     @OnClick(R.id.btn_retry)
-    public void initApplication(){
+    public void initApplication() {
         retryBtn.setVisibility(View.GONE);
         showProgress();
         presenter.initApplication();
