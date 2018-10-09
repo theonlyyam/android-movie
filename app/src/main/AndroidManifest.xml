@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!--I have not added the RTL mode, simply because i have no arabic translations, but all the layout are configured with 'start' abd 'and' attribute, and
+    are therefore ready to accept this mode if we enable it here-->
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"

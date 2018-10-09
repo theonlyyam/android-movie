@@ -2,6 +2,7 @@ package com.ysdc.movie.injection.module;
 
 import android.content.Context;
 
+import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.data.repository.MovieRepository;
 import com.ysdc.movie.injection.annotations.ActivityContext;
 import com.ysdc.movie.injection.annotations.ActivityScope;
@@ -16,7 +17,9 @@ import com.ysdc.movie.ui.splash.SplashPresenter;
 import dagger.Module;
 import dagger.Provides;
 
-
+/**
+ * All our activity presenters are defined here, and all possible dependencies with an Activity scope
+ */
 @Module
 public class ActivityModule {
     private BaseActivity activity;
@@ -33,13 +36,13 @@ public class ActivityModule {
 
     @Provides
     @ActivityScope
-    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(MovieRepository movieRepository) {
-        return new SplashPresenter<>(movieRepository);
+    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(MovieRepository movieRepository, MyPreferences preferences) {
+        return new SplashPresenter<>(movieRepository, preferences);
     }
 
     @Provides
     @ActivityScope
-    MainMvpPresenter<MainMvpView> provideMainPresenter(MovieRepository movieRepository) {
-        return new MainPresenter<>(movieRepository);
+    MainMvpPresenter<MainMvpView> provideMainPresenter() {
+        return new MainPresenter<>();
     }
 }

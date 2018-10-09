@@ -91,6 +91,12 @@ public class NetworkMovieMapper {
         return movies;
     }
 
+    /**
+     * Build the movie image URL based on the base url and the image size that where set in our mapper, and the image name define in the movie object
+     *
+     * @param imageUrl the image id of the movie (with its extension)
+     * @return the full URL path
+     */
     private String buildImageUrl(String imageUrl) {
         return imageBaseUrl + imageDefaultSize + imageUrl;
     }

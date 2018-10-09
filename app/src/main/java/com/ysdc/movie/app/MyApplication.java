@@ -63,15 +63,6 @@ public class MyApplication extends MultiDexApplication {
         return appComponent;
     }
 
-    /**
-     * Method used to set a test component
-     *
-     * @param appComponent the dagger test appComponent
-     */
-    public void setAppComponent(AppComponent appComponent) {
-        this.appComponent = appComponent;
-    }
-
     private void initStetho() {
         Stetho.initialize(Stetho.newInitializerBuilder(this)
                 .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))

@@ -15,13 +15,12 @@
 
 package com.ysdc.movie.ui.base;
 
-/**
- * Every view (Activity & fragment) must implement this interface. Used also in the presenters as a reference to their views.
- */
-
 import android.content.res.Resources;
 import android.support.annotation.StringRes;
 
+/**
+ * Every view (Activity & fragment) must implement this interface. Used also in the presenters as a reference to their views.
+ */
 public interface MvpView {
 
     void onError(Throwable throwable);

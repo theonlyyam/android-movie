@@ -2,6 +2,7 @@ package com.ysdc.movie.ui.movielist;
 
 
 import com.ysdc.movie.data.model.Movie;
+import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.data.repository.MovieRepository;
 import com.ysdc.movie.ui.base.BasePresenter;
 
@@ -11,26 +12,26 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * Presenter of the movie list fragment. Responsable of the call for the movie list, and also to get the movie details.
+ *
  * @param <V>
  */
 public class MovieListPresenter<V extends MovieListMvpView> extends BasePresenter<V> implements MovieListMvpPresenter<V> {
 
     private static final int INITIAL_PAGE = 1;
     private final MovieRepository movieRepository;
+    private final MyPreferences preferences;
     private final AtomicBoolean queryInProgress = new AtomicBoolean(false);
     private List<Movie> movies;
     private int currentPage;
 
-    private Integer yearSelected;
-
-    public MovieListPresenter(MovieRepository movieRepository) {
+    public MovieListPresenter(MovieRepository movieRepository, MyPreferences preferences) {
         super();
         this.movieRepository = movieRepository;
+        this.preferences = preferences;
     }
 
     @Override
@@ -68,9 +69,11 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
     public Single<List<Movie>> getMovies() {
         return Single.defer(() -> {
             queryInProgress.set(true);
-            return movieRepository.getMovies(currentPage, new Date(), yearSelected)
+            Date afterDate = preferences.getAsLong(MyPreferences.FILTER_FROM_DATE) > 0 ? new Date(preferences.getAsLong(MyPreferences.FILTER_FROM_DATE)) : null;
+            Date beforeDate = preferences.getAsLong(MyPreferences.FILTER_TO_DATE) > 0 ? new Date(preferences.getAsLong(MyPreferences.FILTER_TO_DATE)) : null;
+            return movieRepository.getMovies(currentPage, beforeDate, afterDate)
                     .subscribeOn(Schedulers.io())
-                    .onErrorResumeNext(throwable -> Single.just(new ArrayList<>()))
+                    .doOnError(throwable -> Single.just(new ArrayList<>()))
                     .doOnSuccess(resultList -> movies.addAll(resultList))
                     .flatMap(resultList -> Single.just(movies))
                     .doFinally(() -> queryInProgress.set(false));
@@ -83,16 +86,6 @@ public class MovieListPresenter<V extends MovieListMvpView> extends BasePresente
             currentPage++;
             return getMovies();
         });
-    }
-
-    @Override
-    public Integer getYearSelected() {
-        return yearSelected;
-    }
-
-    @Override
-    public void setYearSelected(Integer yearSelected) {
-        this.yearSelected = yearSelected;
     }
 
     @Override

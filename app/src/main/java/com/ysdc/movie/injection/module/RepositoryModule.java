@@ -13,7 +13,7 @@ import dagger.Provides;
 
 
 /**
- * Created by david on 5/10/18.
+ * Contains our repositories to inject
  */
 
 @Module

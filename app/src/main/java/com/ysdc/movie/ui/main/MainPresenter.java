@@ -9,10 +9,8 @@ import com.ysdc.movie.ui.base.BasePresenter;
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-    private final MovieRepository movieRepository;
-
-    public MainPresenter(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MainPresenter() {
+        //Nothing to do
     }
 
 }

@@ -33,7 +33,7 @@ public class ConfigurationResponse {
         images.imageBaseUrl = url;
     }
 
-    class Images {
+    private class Images {
         @SerializedName("base_url")
         private String imageBaseUrl;
         @SerializedName("secure_base_url")

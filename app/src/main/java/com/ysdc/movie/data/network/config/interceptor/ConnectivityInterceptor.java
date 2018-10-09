@@ -6,18 +6,20 @@ import com.ysdc.movie.exception.NoConnectivityException;
 import com.ysdc.movie.utils.NetworkUtils;
 
 import java.io.IOException;
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by david on 5/10/18.
+ * Class used to return a custom exception if we don't have network
  */
 
 public class ConnectivityInterceptor implements Interceptor {
 
     private final Context context;
     private final NetworkUtils networkUtils;
+
     public ConnectivityInterceptor(Context context, NetworkUtils networkUtils) {
         this.context = context;
         this.networkUtils = networkUtils;

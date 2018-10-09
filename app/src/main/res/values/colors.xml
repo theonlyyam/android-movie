@@ -7,4 +7,9 @@
     <color name="background_grey">#f5f6f7</color>
     <color name="placeholder_bg">#dddddd</color>
     <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="link">#4a90e2</color>
+    <color name="red">#FF0000</color>
 </resources>

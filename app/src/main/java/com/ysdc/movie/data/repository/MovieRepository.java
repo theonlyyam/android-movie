@@ -107,15 +107,18 @@ public class MovieRepository {
      * Get a list of the most movies
      *
      * @param pageNumber the page number we want to see, as the service return 20 movies at a time (sadly this offset is not configurable)
-     * @param beforeDate movies release before this date.
-     * @param year       optional attribute, if we want a specific year
+     * @param beforeDate movies release before this date (if null, we use the current date).
+     * @param afterDate  movies release after this date (optional, set in the filter view).
      * @return a list of movies, encapsulated in a Single RXJava object, or an error if anything went bad.
      */
-    public Single<List<Movie>> getMovies(Integer pageNumber, @NotNull Date beforeDate, @Nullable Integer year) {
+    public Single<List<Movie>> getMovies(Integer pageNumber, @Nullable Date beforeDate, @Nullable Date afterDate) {
         return Single.defer(() -> {
             resetLastSearchValues();
             SimpleDateFormat dateFormat = new SimpleDateFormat(MOVIE_DB_DATE_FORMAT, Locale.getDefault());
-            return networkService.getLatestMovie(pageNumber, dateFormat.format(beforeDate), DEFAULT_SORT_ORDER, year)
+            return networkService.getLatestMovie(pageNumber,
+                    beforeDate == null ? null : dateFormat.format(beforeDate),
+                    afterDate == null ? null : dateFormat.format(afterDate),
+                    DEFAULT_SORT_ORDER)
                     .subscribeOn(Schedulers.io())
                     .map(discoverMovieResponse -> {
                         this.lastSearchTotalPages = discoverMovieResponse.getPages();

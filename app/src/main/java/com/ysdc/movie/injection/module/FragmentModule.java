@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
+import com.ysdc.movie.data.prefs.MyPreferences;
 import com.ysdc.movie.data.repository.MovieRepository;
 import com.ysdc.movie.injection.annotations.ActivityScope;
 import com.ysdc.movie.injection.annotations.FragmentScope;
+import com.ysdc.movie.ui.filter.FilterMvpPresenter;
+import com.ysdc.movie.ui.filter.FilterMvpView;
+import com.ysdc.movie.ui.filter.FilterPresenter;
 import com.ysdc.movie.ui.moviedetails.MovieDetailsMvpPresenter;
 import com.ysdc.movie.ui.moviedetails.MovieDetailsMvpView;
 import com.ysdc.movie.ui.moviedetails.MovieDetailsPresenter;
@@ -17,6 +21,9 @@ import com.ysdc.movie.ui.movielist.MovieListPresenter;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * All our fragment presenters are defined here, and all possible dependencies with a fragment scope
+ */
 @Module
 public class FragmentModule {
     private Fragment fragment;
@@ -43,8 +50,8 @@ public class FragmentModule {
 
     @Provides
     @FragmentScope
-    MovieListMvpPresenter<MovieListMvpView> provideMovieListPresenter(MovieRepository movieRepository) {
-        return new MovieListPresenter<>(movieRepository);
+    MovieListMvpPresenter<MovieListMvpView> provideMovieListPresenter(MovieRepository movieRepository, MyPreferences preferences) {
+        return new MovieListPresenter<>(movieRepository, preferences);
     }
 
     @Provides
@@ -52,4 +59,11 @@ public class FragmentModule {
     MovieDetailsMvpPresenter<MovieDetailsMvpView> provideMovieDetailsPresenter() {
         return new MovieDetailsPresenter<>();
     }
+
+    @Provides
+    @FragmentScope
+    FilterMvpPresenter<FilterMvpView> provideFilterPresenter(MyPreferences preferences) {
+        return new FilterPresenter<>(preferences);
+    }
+
 }

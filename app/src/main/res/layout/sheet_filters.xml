@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    app:behavior_hideable="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/filter_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        card_view:cardElevation="@dimen/elevation_high">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center|left">
+
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/filter_title_left_margin"
+                android:background="@color/transparent"
+                android:contentDescription="@string/close_button_desc"
+                android:src="@drawable/ic_close_black" />
+
+            <TextView
+                android:id="@+id/filter_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/filter_title_left_margin"
+                android:layout_toStartOf="@+id/btn_search"
+                android:layout_toEndOf="@id/btn_close"
+                android:fontFamily="sans-serif"
+                android:paddingTop="@dimen/filter_pad_top"
+                android:text="@string/action_filter"
+                android:textColor="@color/black"
+                android:textSize="@dimen/filter_title_size"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/filter_title"
+                android:layout_alignParentEnd="true"
+                android:background="@color/transparent"
+                android:fontFamily="sans-serif"
+                android:paddingRight="@dimen/filter_pad_margin_right"
+                android:text="@string/action_search"
+                android:textColor="@color/link"
+                android:textSize="@dimen/filter_title_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/layout_from_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_header"
+        android:layout_marginEnd="@dimen/filter_title_right"
+        android:layout_marginStart="@dimen/filter_title_left"
+        android:layout_marginTop="@dimen/filter_title_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layout_from_date_actions"
+            android:layout_width="@dimen/null_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/from_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from_date"
+                android:textSize="@dimen/filter_title_font" />
+
+            <TextView
+                android:id="@+id/from_date_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/from_date_title"
+                android:layout_marginTop="@dimen/filter_value_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/filter_value_font"
+                tools:text="-" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/clear_from_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:contentDescription="@string/clear_from_date_desc"
+            android:src="@drawable/ic_close_red" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_to_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_from_date"
+        android:layout_marginEnd="@dimen/filter_title_right"
+        android:layout_marginStart="@dimen/filter_title_left"
+        android:layout_marginTop="@dimen/filter_title_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layout_to_date_action"
+            android:layout_width="@dimen/null_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/to_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to_date"
+                android:textSize="@dimen/filter_title_font" />
+
+            <TextView
+                android:id="@+id/to_date_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/to_date_title"
+                android:layout_marginTop="@dimen/filter_value_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/filter_value_font"
+                tools:text="-" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/clear_to_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:contentDescription="@string/clear_to_date_desc"
+            android:src="@drawable/ic_close_red" />
+    </LinearLayout>
+</RelativeLayout>

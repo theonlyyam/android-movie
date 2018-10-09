@@ -17,6 +17,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * All our dependencies that need to have a full application lifecycle
+ */
 @Module
 public class AppModule {
 
@@ -39,8 +42,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public MyPreferences provideAppPreferences(@ApplicationContext Context context, Gson gson) {
-        return new MyPreferences(context, gson);
+    public MyPreferences provideAppPreferences(@ApplicationContext Context context) {
+        return new MyPreferences(context);
     }
 
     @Provides
@@ -52,7 +55,7 @@ public class AppModule {
     @Provides
     @Singleton
     public GeneralConfig provideGeneralConfig() {
-        return new AppConfig(application);
+        return new AppConfig();
     }
 
     @Provides
