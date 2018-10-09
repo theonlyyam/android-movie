@@ -15,6 +15,10 @@
     <string name="from_date">from Date</string>
     <string name="to_date">To Date</string>
     <string name="invalid_date">The date range selected is invalid. Please verify them</string>
+    <string name="movie_poster_desc">movie poster</string>
+    <string name="close_button_desc">close button</string>
+    <string name="clear_to_date_desc">Clear the date after filter</string>
+    <string name="clear_from_date_desc">Clear the date from filter</string>
 
     <plurals name="vote_format">
         <item quantity="zero">No vote information</item>

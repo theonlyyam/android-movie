@@ -28,4 +28,5 @@
     <dimen name="filter_title_font">12sp</dimen>
     <dimen name="filter_pad_margin_right">20dp</dimen>
     <dimen name="filter_title_right">10dp</dimen>
+    <dimen name="splash_title_font">24sp</dimen>
 </resources>

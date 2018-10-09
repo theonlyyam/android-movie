@@ -3,34 +3,34 @@
     android:layout_height="@dimen/movie_cell_height"
     android:background="@color/background_grey">
 
-        <View
-            android:id="@+id/placeholder_img"
-            android:layout_width="@dimen/movie_img_width"
-            android:layout_height="@dimen/movie_cell_height"
-            android:layout_margin="@dimen/placeholder_img_margin"
-            android:background="@color/placeholder_bg" />
+    <View
+        android:id="@+id/placeholder_img"
+        android:layout_width="@dimen/movie_img_width"
+        android:layout_height="@dimen/movie_cell_height"
+        android:layout_margin="@dimen/placeholder_img_margin"
+        android:background="@color/placeholder_bg" />
 
-        <View
-            android:id="@+id/placeholde_title"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/placeholder_text_margin"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/cell_movie_margin"
-            android:layout_marginRight="@dimen/cell_movie_margin"
-            android:layout_marginTop="@dimen/placeholder_img_margin"
-            android:layout_toRightOf="@id/placeholder_img"
-            android:background="@color/placeholder_bg" />
+    <View
+        android:id="@+id/placeholde_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/placeholder_text_margin"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/cell_movie_margin"
+        android:layout_marginStart="@dimen/cell_movie_margin"
+        android:layout_marginTop="@dimen/placeholder_img_margin"
+        android:layout_toEndOf="@id/placeholder_img"
+        android:background="@color/placeholder_bg" />
 
-        <View
-            android:id="@+id/placeholder_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/placeholder_text_margin"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/placeholde_title"
-            android:layout_marginLeft="@dimen/cell_movie_margin"
-            android:layout_marginRight="@dimen/cell_movie_margin"
-            android:layout_marginTop="@dimen/placeholder_text_margin_top"
-            android:layout_toRightOf="@id/placeholder_img"
-            android:background="@color/placeholder_bg" />
+    <View
+        android:id="@+id/placeholder_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/placeholder_text_margin"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/placeholde_title"
+        android:layout_marginEnd="@dimen/cell_movie_margin"
+        android:layout_marginStart="@dimen/cell_movie_margin"
+        android:layout_marginTop="@dimen/placeholder_text_margin_top"
+        android:layout_toEndOf="@id/placeholder_img"
+        android:background="@color/placeholder_bg" />
 
 </RelativeLayout>

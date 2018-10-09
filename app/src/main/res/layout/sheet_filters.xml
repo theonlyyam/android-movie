@@ -26,16 +26,18 @@
                 android:id="@+id/btn_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/filter_title_left_margin"
+                android:layout_marginStart="@dimen/filter_title_left_margin"
                 android:background="@color/transparent"
+                android:contentDescription="@string/close_button_desc"
                 android:src="@drawable/ic_close_black" />
 
             <TextView
                 android:id="@+id/filter_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/filter_title_left_margin"
-                android:layout_toRightOf="@id/btn_close"
+                android:layout_marginStart="@dimen/filter_title_left_margin"
+                android:layout_toStartOf="@+id/btn_search"
+                android:layout_toEndOf="@id/btn_close"
                 android:fontFamily="sans-serif"
                 android:paddingTop="@dimen/filter_pad_top"
                 android:text="@string/action_filter"
@@ -64,19 +66,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/filter_header"
-        android:layout_marginLeft="@dimen/filter_title_left"
-        android:layout_marginRight="@dimen/filter_title_right"
+        android:layout_marginEnd="@dimen/filter_title_right"
+        android:layout_marginStart="@dimen/filter_title_left"
         android:layout_marginTop="@dimen/filter_title_top"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/layout_from_date_actions"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_width="@dimen/null_dimen"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/from_date_title"
@@ -101,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
+            android:contentDescription="@string/clear_from_date_desc"
             android:src="@drawable/ic_close_red" />
     </LinearLayout>
 
@@ -109,19 +112,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_from_date"
-        android:layout_marginLeft="@dimen/filter_title_left"
-        android:layout_marginRight="@dimen/filter_title_right"
+        android:layout_marginEnd="@dimen/filter_title_right"
+        android:layout_marginStart="@dimen/filter_title_left"
         android:layout_marginTop="@dimen/filter_title_top"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/layout_to_date_action"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_width="@dimen/null_dimen"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/to_date_title"
@@ -146,6 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
+            android:contentDescription="@string/clear_to_date_desc"
             android:src="@drawable/ic_close_red" />
     </LinearLayout>
 </RelativeLayout>
